@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+
+
+int find(int parent[], int i) {
+// Write your code here...
+	if(parent[i]!=i)
+		parent[i]=find(parent, parent[i]);
+	return parent[i];
+}
+
+
+void union1(int parent[], int rank[], int i, int j) {
+	int rooti= find(parent, i);
+	int rootj= find(parent, j);
+
+	if(rank[rooti]<rank[rootj]){
+		parent[rooti]=rootj;
+	}else if(rank[rooti]>rank[rootj]){
+		parent[rootj]=rooti;
+	}else{
+		parent[rootj]=rooti;
+		rank[rooti]++;
+	}
+}
+
+
+void kruskalMST(int **cost, int V) {
+	int parent[V],rank[V];
+	for(int i=0;i<V;i++){
+		parent[i]=i;
+		rank[i]=0;
+	}
+
+	int edgeCount=0,minCost=0;
+}
